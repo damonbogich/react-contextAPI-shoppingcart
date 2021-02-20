@@ -15,6 +15,8 @@ function App() {
 	const [products] = useState(data);
 	const [cart, setCart] = useState([]);
 
+	console.log(cart, 'cart here');
+
 	const addItem = item => {
 		// add the given item to the cart
 		if (!cart.includes(item)) {
@@ -22,9 +24,16 @@ function App() {
 		}
 	};
 
+	const removeItem = item => {
+		console.log(item)
+		let newCart = cart.filter((book) => book.id !== item.id)
+		console.log(newCart, 'newcart')
+		setCart(newCart);
+	}
+
 	return (
 		<div className="App">
-			<CartContext.Provider value={cart}>
+			<CartContext.Provider value={{cart, removeItem}}>
 				<Navigation  />
 				{/* Routes */}
 				<ProductContext.Provider value={{products, addItem}}>
