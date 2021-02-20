@@ -15,10 +15,7 @@ function App() {
 	const [products] = useState(data);
 	const [cart, setCart] = useState([]);
 
-	console.log(cart, 'cart here');
-
 	const addItem = item => {
-		// add the given item to the cart
 		if (!cart.includes(item)) {
 			setCart([...cart, item]);
 		}
@@ -35,7 +32,6 @@ function App() {
 		<div className="App">
 			<CartContext.Provider value={{cart, removeItem}}>
 				<Navigation  />
-				{/* Routes */}
 				<ProductContext.Provider value={{products, addItem}}>
 					<Route exact path="/">
 						<Products />
